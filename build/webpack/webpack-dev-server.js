@@ -7,6 +7,7 @@ const server = new WebpackDevServer(compiler, {
     publicPath: config.output.publicPath,
     historyApiFallback: true,
     noInfo: true,
+    open: true,
     disableHostCheck: true,
     overlay: true,
     contentBase: "public"

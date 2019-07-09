@@ -26,32 +26,32 @@ renderSiteApp(
                     }
                 },
                 {
-                    pathname: "/folder-1//nested-folder",
+                    pathname: "/folder-1/nested-folder",
                     children: [
                         {
-                            pathname: "/folder-1//nested-folder/nested-file",
+                            pathname: "/folder-1/nested-folder/nested-file",
                             content: id => {
                                 appContent(
                                     id,
-                                    "content/folder-1//nested-folder/nested-file"
+                                    "content/folder-1/nested-folder/nested-file"
                                 );
                             }
                         },
                         {
-                            pathname: "/folder-1//nested-folder/nested-file-2",
+                            pathname: "/folder-1/nested-folder/nested-file-2",
                             content: id => {
                                 appContent(
                                     id,
-                                    "content/folder-1//nested-folder/nested-file-2"
+                                    "content/folder-1/nested-folder/nested-file-2"
                                 );
                             }
                         },
                         {
-                            pathname: "/folder-1//nested-folder/nested-file-3",
+                            pathname: "/folder-1/nested-folder/nested-file-3",
                             content: id => {
                                 appContent(
                                     id,
-                                    "content/folder-1//nested-folder/nested-file-3"
+                                    "content/folder-1/nested-folder/nested-file-3"
                                 );
                             }
                         }

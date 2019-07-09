@@ -1,20 +1,50 @@
 {
   "name": "@cerner/carbon-site-helpers",
-  "version": "0.0.0",
-  "main": "dist/main.js",
   "description": "A set of helpers for Carbon Graphs Site",
-  "scripts": {
-    "dev": "node ./build/webpack/webpack-dev-server.js",
-    "build": "webpack --config build/webpack/webpack.prod.js",
-    "lint": "eslint src --color",
-    "lint:fix": "eslint src --color --fix",
-    "prepublish": "npm run build",
-    "test": "exit 0"
+  "version": "0.0.0",
+  "author": "Cerner Corporation",
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ],
+  "bugs": "https://github.com/cerner/carbon-site-helpers/issues",
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "type-case": [
+        0,
+        "always",
+        "start-case"
+      ],
+      "type-enum": [
+        2,
+        "always",
+        [
+          "Fix",
+          "Chore",
+          "New",
+          "Docs",
+          "Breaking",
+          "Upgrade",
+          "Update",
+          "Build",
+          "Revert"
+        ]
+      ],
+      "subject-case": [
+        0,
+        "always",
+        "start-case"
+      ]
+    }
   },
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
-    "@material-ui/styles": "^3.0.0-alpha.10",
+    "@material-ui/styles": "^4.2.0",
     "classnames": "^2.2.6",
     "downshift": "^3.2.10",
     "prop-types": "^15.7.2",
@@ -24,48 +54,73 @@
     "react-router-dom": "^5.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/core": "^7.5.0",
+    "@babel/plugin-proposal-class-properties": "^7.5.0",
     "@babel/plugin-transform-classes": "^7.4.4",
-    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.5.0",
     "@babel/polyfill": "^7.4.4",
-    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-env": "^7.5.3",
     "@babel/preset-react": "^7.0.0",
-    "@babel/runtime": "^7.4.5",
-    "babel-eslint": "^10.0.1",
+    "@babel/runtime": "^7.5.3",
+    "@commitlint/cli": "^8.0.0",
+    "@commitlint/config-conventional": "^8.0.0",
+    "@semantic-release/git": "^7.0.16",
+    "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.6",
     "babel-plugin-istanbul": "^5.1.3",
     "babel-plugin-minify-replace": "^0.5.0",
     "babel-preset-minify": "^0.5.0",
+    "conventional-changelog-eslint": "^3.0.1",
     "css-loader": "^2.1.1",
     "eslint": "^5.16.0",
-    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-airbnb": "^17.1.1",
     "eslint-config-prettier": "^4.3.0",
     "eslint-plugin-babel": "^5.3.0",
-    "eslint-plugin-import": "^2.17.3",
-    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-material-ui": "^1.0.1",
-    "eslint-plugin-react": "^7.13.0",
-    "eslint-plugin-react-hooks": "^1.6.0",
+    "eslint-plugin-react": "^7.14.2",
+    "eslint-plugin-react-hooks": "^1.6.1",
+    "husky": "^3.0.0",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
     "prettier": "^1.17.1",
+    "semantic-release": "^15.13.18",
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
-    "webpack": "^4.32.2",
-    "webpack-cli": "^3.3.2",
-    "webpack-dev-server": "^3.5.1"
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.5",
+    "webpack-dev-server": "^3.7.2"
   },
-  "author": "Cerner Corporation",
-  "license": "Apache-2.0",
   "files": [
     "dist",
-    ".npmrc",
     "README.md"
   ],
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not op_mini all"
-  ]
+  "homepage": "https://github.com/cerner/carbon-site-helpers/",
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "keywords": [
+    "carbon-graphs",
+    "carbon-site-helpers"
+  ],
+  "license": "Apache-2.0",
+  "main": "dist/main.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cerner/carbon-site-helpers.git"
+  },
+  "scripts": {
+    "build": "webpack --config build/webpack/webpack.prod.js",
+    "dev": "node ./build/webpack/webpack-dev-server.js",
+    "lint": "eslint src --color",
+    "lint:fix": "eslint src --color --fix",
+    "prepublishOnly": "npm run build",
+    "test": "exit 0"
+  }
 }

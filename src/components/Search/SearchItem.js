@@ -29,7 +29,10 @@ SearchItem.propTypes = {
     itemProps: PropTypes.shape({
         id: PropTypes.string
     }).isRequired,
-    suggestion: PropTypes.shape({ label: PropTypes.string }).isRequired
+    suggestion: PropTypes.shape({
+        label: PropTypes.string,
+        pathname: PropTypes.string
+    }).isRequired
 };
 
 SearchItem.defaultProps = {

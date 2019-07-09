@@ -214,6 +214,7 @@ class ResponsiveDrawer extends React.Component {
 }
 
 ResponsiveDrawer.propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
     pages: PropTypes.arrayOf(PropTypes.object).isRequired,
     currentPage: PropTypes.objectOf(PropTypes.string).isRequired
 };
