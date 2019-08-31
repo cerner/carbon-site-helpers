@@ -12,6 +12,7 @@ function SearchItem({ suggestion, itemProps, index, highlightedIndex }) {
                 {...itemProps}
                 button
                 divider
+                title={suggestion.pathname}
                 key={suggestion.pathname}
                 component="div"
                 selected={highlightedIndex === index}

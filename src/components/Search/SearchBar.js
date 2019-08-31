@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import CONSTANTS from "../../helpers/constants";
 import { flatten } from "../../helpers/pageHelpers";
-import {getFilteredSuggestions} from "../../helpers/searchHelpers";
+import { getFilteredSuggestions } from "../../helpers/searchHelpers";
 import SearchItem from "./SearchItem";
 
 let popperNode = null;
@@ -95,6 +95,7 @@ function SearchBar(props) {
                                         inputRef={node => {
                                             popperNode = node;
                                         }}
+                                        type="search"
                                         classes={{
                                             root: classes.inputRoot,
                                             input: classes.inputInput
