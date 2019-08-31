@@ -11,7 +11,11 @@ function GettingStartedPage(props) {
     return (
         <RouterContextProvider value={location}>
             <MuiThemeProvider theme={CONSTANTS.THEME()}>
-                <ResponsiveDrawer pages={pages} currentPage={location} gitHubURL={gitHubURL}/>
+                <ResponsiveDrawer
+                    pages={pages}
+                    currentPage={location}
+                    gitHubURL={gitHubURL}
+                />
             </MuiThemeProvider>
         </RouterContextProvider>
     );

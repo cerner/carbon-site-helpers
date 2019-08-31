@@ -9,8 +9,8 @@ function HomePage(props) {
     const { startLink, gitHubURL } = props;
     return (
         <MuiThemeProvider theme={CONSTANTS.THEME()}>
-            <Header isHome gitHubURL={gitHubURL}/>
-            <HomePageBlurb startLink={startLink}/>
+            <Header isHome gitHubURL={gitHubURL} />
+            <HomePageBlurb startLink={startLink} />
         </MuiThemeProvider>
     );
 }

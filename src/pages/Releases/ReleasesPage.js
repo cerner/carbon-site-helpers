@@ -14,15 +14,14 @@ import TableFooter from "@material-ui/core/TableFooter";
 import TablePagination from "@material-ui/core/TablePagination";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-
 import useReleases from "../../hooks/useReleases";
 import Header from "../../components/Header/Header";
 import CONSTANTS from "../../helpers/constants";
-import {getLatestRelease} from "../../helpers/releasesInfo";
+import { isLatestRelease } from "../../helpers/releasesInfo";
 
-const styles = () => ({
+const styles = theme => ({
     container: {
-        padding: "6rem"
+        marginTop: theme.spacing.unit * 9
     },
     cardHolder: {
         border: "none",
@@ -36,25 +35,29 @@ const styles = () => ({
     }
 });
 
-const ReleasesPage = (props) => {
+const ReleasesPage = props => {
     const { classes, gitHubURL } = props;
     const versions = useReleases(gitHubURL);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(4);
 
     function getMarkdownText(body) {
-        const rawMarkup = marked(DOMPurify.sanitize(body), { sanitize: true });
+        const rawMarkup = marked(DOMPurify.sanitize(body));
         return { __html: rawMarkup };
     }
 
     const getReleaseDetails = version => {
         return (
-            <div key={version.id} dangerouslySetInnerHTML={getMarkdownText(version.body)}/> //  eslint-disable-line react/no-danger
+            <div
+                key={version.id}
+                // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={getMarkdownText(version.body)}
+            />
         );
     };
 
     const handlePageChange = (event, newPage) => setPage(newPage);
-    const handleChangeRowsPerPage = (event) => {
+    const handleChangeRowsPerPage = event => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
@@ -66,21 +69,39 @@ const ReleasesPage = (props) => {
     return (
         <MuiThemeProvider theme={CONSTANTS.THEME()}>
             <Paper>
-                <Header withNav={false} gitHubURL={gitHubURL}/>
-                <div className={classes.container}>
-                    <Table>
+                <Header withNav={false} gitHubURL={gitHubURL} />
+                <React.Fragment>
+                    <Table className={classes.container}>
                         <TableBody>
-                            {versions.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((v, index) => (
-                                <TableRow key={v.id}>
-                                    <TableCell className={classes.cardHolder}>
-                                        <Card raised={index === 0} className={classNames({ [classes.latestRelease]: getLatestRelease(versions) === v.tag_name })}>
-                                            <CardContent>
-                                                {getReleaseDetails(v)}
-                                            </CardContent>
-                                        </Card>
-                                    </TableCell>
-                                </TableRow>
-                            ))}
+                            {versions
+                                .slice(
+                                    page * rowsPerPage,
+                                    page * rowsPerPage + rowsPerPage
+                                )
+                                .map(v => (
+                                    <TableRow key={v.id}>
+                                        <TableCell
+                                            className={classes.cardHolder}
+                                        >
+                                            <Card
+                                                raised={isLatestRelease(
+                                                    versions,
+                                                    v
+                                                )}
+                                                className={classNames({
+                                                    [classes.latestRelease]: isLatestRelease(
+                                                        versions,
+                                                        v
+                                                    )
+                                                })}
+                                            >
+                                                <CardContent>
+                                                    {getReleaseDetails(v)}
+                                                </CardContent>
+                                            </Card>
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
                         </TableBody>
                         <TableFooter>
                             <TableRow>
@@ -88,14 +109,16 @@ const ReleasesPage = (props) => {
                                     rowsPerPageOptions={[rowsPerPage, 10, 25]}
                                     count={versions.length}
                                     onChangePage={handlePageChange}
-                                    onChangeRowsPerPage={handleChangeRowsPerPage}
+                                    onChangeRowsPerPage={
+                                        handleChangeRowsPerPage
+                                    }
                                     page={page}
                                     rowsPerPage={rowsPerPage}
                                 />
                             </TableRow>
                         </TableFooter>
                     </Table>
-                </div>
+                </React.Fragment>
             </Paper>
         </MuiThemeProvider>
     );
@@ -103,7 +126,7 @@ const ReleasesPage = (props) => {
 
 ReleasesPage.propTypes = {
     gitHubURL: PropTypes.string.isRequired,
-    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    classes: PropTypes.objectOf(PropTypes.string).isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(ReleasesPage);
