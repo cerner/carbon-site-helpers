@@ -11,15 +11,15 @@ import { RouterContextConsumer } from "../Context/RouterContext";
 
 const styles = theme => ({
     item: {
-        display: "block",
-        paddingTop: 0,
-        paddingBottom: 0
+        display: "block !important",
+        paddingTop: "0 !important",
+        paddingBottom: "0 !important"
     },
     itemLeaf: {
         color: theme.palette.primary.dark,
         display: "flex",
-        paddingTop: 0,
-        paddingBottom: 0
+        paddingTop: "0 !important",
+        paddingBottom: "0 !important"
     },
     button: {
         color: theme.palette.primary.dark,
