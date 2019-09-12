@@ -94,6 +94,7 @@ class NavItem extends React.Component {
                 <RouterContextConsumer>
                     {context => (
                         <ListItem
+                            selected={context.pathname === href}
                             className={classes.itemLeaf}
                             disableGutters
                             {...other}

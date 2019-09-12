@@ -83,7 +83,7 @@ function SearchBar(props) {
                         inputValue,
                         isOpen
                     }) => (
-                        <div className={classes.container}>
+                        <div className={classes.container} title="Search" role="textbox">
                             {
                                 <div className={classes.search}>
                                     <div className={classes.searchIcon}>

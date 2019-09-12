@@ -160,7 +160,7 @@ class ResponsiveDrawer extends React.Component {
                         </Drawer>
                     </Hidden>
                 </nav>
-                <main className={classes.contentRoot}>
+                <div className={classes.contentRoot}>
                     <ContentBreadcrumb pathname={currentPage.pathname} />
                     <div
                         className={classes.content}
@@ -168,7 +168,7 @@ class ResponsiveDrawer extends React.Component {
                         id={makeContentId(currentPage.pathname)}
                         key={currentPage.pathname}
                     />
-                </main>
+                </div>
             </div>
         );
     }

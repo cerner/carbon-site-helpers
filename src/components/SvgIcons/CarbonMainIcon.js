@@ -3,7 +3,6 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 import React from "react";
 import SvgIcon from "../../../public/Carbon.svg";
-import constants from "../../helpers/constants";
 
 const styles = theme => ({
     logo: {
@@ -17,7 +16,7 @@ const styles = theme => ({
 const CarbonMainIcon = ({ classes, className }) => (
     <img
         className={classNames(classes.logo, className)}
-        alt={constants.HEADER_MAIN_TITLE}
+        alt="Home"
         src={SvgIcon}
     />
 );

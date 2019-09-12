@@ -21,7 +21,7 @@ function AppRouter(props) {
     return (
         <ThemeProvider theme={constants.THEME()}>
             <HashRouter basename={process.env.PUBLIC_URL}>
-                <div>
+                <main>
                     <Switch>
                         {flatten(pages, constants.PATHNAME_PROPERTY).map(p => (
                             <Route
@@ -55,7 +55,7 @@ function AppRouter(props) {
                         />
                         <Route component={NotFoundPage} />
                     </Switch>
-                </div>
+                </main>
             </HashRouter>
         </ThemeProvider>
     );
