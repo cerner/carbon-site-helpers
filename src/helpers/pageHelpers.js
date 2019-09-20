@@ -74,18 +74,11 @@ const getPageProperty = (pages, property) =>
  * @param {string} key - pathname
  * @returns {object} path object containing pathname and content.
  */
-const getMatchingPage = (pages, key, currentPage) => {
+const getMatchingPage = (pages, key) => {
     let result = {};
     const iter = a => {
         if (a.pathname === key) {
             result = a;
-            console.log("current page");
-            console.log(currentPage);
-
-            console.log(result);
-            console.log(currentPage);
-
-            // currentPage.content = result.getCodeForContent ? result.getCodeForContent() : "No code for content";
             return true;
         }
         return Array.isArray(a.children) && a.children.some(iter);
@@ -99,7 +92,20 @@ const getMatchingPage = (pages, key, currentPage) => {
  * @param {string} key - href key
  * @return {function} content for the page
  */
-const getPageContent = (pages, key, currentPage) => getMatchingPage(pages, key, currentPage).content;
+const getPageContent = (pages, key) => getMatchingPage(pages, key).content;
+/**
+ * Returns the source code used to generate a content for a particular page
+ * @param {array} pages - list of page objects
+ * @param {string} key - href key
+ * @return {function} source code for the page
+ */
+const getPageSource = (pages, key) => {
+    const currentPage = getMatchingPage(pages, key);
+    if(currentPage.getCodeContent && typeof currentPage.getCodeContent === "function") {
+        return getMatchingPage(pages, key).getCodeContent();
+    }
+    return "No source available";
+};
 /**
  * Page title for the header and Nav
  * @param {array} pages - list of page objects
@@ -146,6 +152,7 @@ export {
     flatten,
     getHashedHref,
     getPageContent,
+    getPageSource,
     getPageTitle,
     convertPageToTitle,
     makeTitle,

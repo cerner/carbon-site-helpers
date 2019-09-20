@@ -5,7 +5,6 @@ import Hidden from "@material-ui/core/Hidden/index";
 import { withStyles } from "@material-ui/core/styles/index";
 import PropTypes from "prop-types";
 import React from "react";
-import CodeIcon from "@material-ui/icons/Code";
 import Button from "@material-ui/core/Button";
 import AceEditor from "react-ace";
 import 'brace/theme/twilight';
@@ -14,6 +13,7 @@ import constants from "../../helpers/constants";
 import renderNavItems from "../../helpers/navItemHelpers";
 import {
     getPageContent,
+    getPageSource,
     getPageTitle,
     makeContentId
 } from "../../helpers/pageHelpers";
@@ -59,6 +59,16 @@ const styles = theme => ({
                 theme.spacing(2)}px)`
         },
         height: `calc(100vh - ${theme.spacing(9)}px)`
+    },
+    showCodeSource: {
+        display: "flex",
+        flexFlow: "row-reverse",
+        paddingBottom: "5px"
+    },
+    aceEditor: {
+        width: "100% !important",
+        position: "relative",
+        marginBottom: "1rem"
     }
 });
 
@@ -111,7 +121,7 @@ class ResponsiveDrawer extends React.Component {
     renderContent() {
         const { currentPage, pages } = this.props;
         if (currentPage) {
-            this.graph = getPageContent(pages, currentPage.pathname, currentPage)(
+            this.graph = getPageContent(pages, currentPage.pathname)(
                 this.contentElement.id
             );
         }
@@ -174,14 +184,18 @@ class ResponsiveDrawer extends React.Component {
                 </nav>
                 <div className={classes.contentRoot}>
                     <ContentBreadcrumb pathname={currentPage.pathname} />
-                    <Button size="small" style={{width:"0.5rem"}}>
-                        <CodeIcon
-                            onClick={this.handleCodeIconClick}
-                        />
-                    </Button>
+                    <div className={classes.showCodeSource}>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={this.handleCodeIconClick}>
+                            Source
+                        </Button>
+                    </div>
                     <AceEditor
                         style={showCode ? {display: ""} : {display: "none"}}
-                        value={currentPage.content}
+                        className={classes.aceEditor}
+                        value={getPageSource(pages, currentPage.pathname)}
                         name="APP_CONTENT_CODE"
                         mode="javascript"
                         theme="twilight"

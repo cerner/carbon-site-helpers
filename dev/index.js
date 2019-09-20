@@ -17,7 +17,8 @@ renderSiteApp(
                     title: "File 1",
                     content: id => {
                         appContent(id, "content/folder-1/file-1");
-                    }
+                    },
+                    getCodeContent: () => appContent.toString()
                 },
                 {
                     pathname: "/folder-1/file-2",
