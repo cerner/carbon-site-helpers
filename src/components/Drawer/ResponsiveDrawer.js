@@ -5,6 +5,11 @@ import Hidden from "@material-ui/core/Hidden/index";
 import { withStyles } from "@material-ui/core/styles/index";
 import PropTypes from "prop-types";
 import React from "react";
+import CodeIcon from "@material-ui/icons/Code";
+import Button from "@material-ui/core/Button";
+import AceEditor from "react-ace";
+import 'brace/theme/twilight';
+import 'brace/mode/javascript';
 import constants from "../../helpers/constants";
 import renderNavItems from "../../helpers/navItemHelpers";
 import {
@@ -66,7 +71,8 @@ class ResponsiveDrawer extends React.Component {
             this.contentElement = e;
         };
         this.state = {
-            mobileOpen: false
+            mobileOpen: false,
+            showCode: false
         };
     }
 
@@ -105,10 +111,16 @@ class ResponsiveDrawer extends React.Component {
         }
     }
 
+    handleCodeIconClick = () => {
+        this.setState(state => ({
+            showCode: !state.showCode
+        }));
+    };
+
     render() {
         const { props, state } = this;
         const { classes, pages, currentPage, gitHubURL } = props;
-        const { mobileOpen } = state;
+        const { mobileOpen, showCode } = state;
         const drawer = (
             <RouterContextConsumer>
                 {context => (
@@ -162,6 +174,23 @@ class ResponsiveDrawer extends React.Component {
                 </nav>
                 <div className={classes.contentRoot}>
                     <ContentBreadcrumb pathname={currentPage.pathname} />
+                    <Button variant="default" size="small" style={{width:"0.5rem"}}>
+                        <CodeIcon
+                            onClick={this.handleCodeIconClick}
+                        />
+                    </Button>
+                    <AceEditor
+                        style={showCode ? {display: ""} : {display: "none"}}
+                        value={currentPage.getCode ? currentPage.getCode() : "cannot display"}
+                        name="APP_CONTENT_CODE"
+                        mode="javascript"
+                        theme="twilight"
+                        setOptions={{
+                            showLineNumbers: true,
+                            showGutter: true
+                        }}
+                        readOnly={true}
+                    />
                     <div
                         className={classes.content}
                         ref={this.setElementRef}

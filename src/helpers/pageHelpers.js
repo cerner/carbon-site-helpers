@@ -49,6 +49,7 @@ const convertPageToTitle = page => {
     if (page.title) {
         return page.title;
     }
+    console.log(makeTitle(page.pathname.replace(/.*\//, "")));
     return makeTitle(page.pathname.replace(/.*\//, ""));
 };
 /* eslint-disable no-nested-ternary */
@@ -79,6 +80,8 @@ const getMatchingPage = (pages, key) => {
     const iter = a => {
         if (a.pathname === key) {
             result = a;
+            console.log("content");
+            console.log(result);
             return true;
         }
         return Array.isArray(a.children) && a.children.some(iter);
