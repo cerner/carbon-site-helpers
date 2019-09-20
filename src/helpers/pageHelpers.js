@@ -49,7 +49,6 @@ const convertPageToTitle = page => {
     if (page.title) {
         return page.title;
     }
-    console.log(makeTitle(page.pathname.replace(/.*\//, "")));
     return makeTitle(page.pathname.replace(/.*\//, ""));
 };
 /* eslint-disable no-nested-ternary */
@@ -75,13 +74,18 @@ const getPageProperty = (pages, property) =>
  * @param {string} key - pathname
  * @returns {object} path object containing pathname and content.
  */
-const getMatchingPage = (pages, key) => {
+const getMatchingPage = (pages, key, currentPage) => {
     let result = {};
     const iter = a => {
         if (a.pathname === key) {
             result = a;
-            console.log("content");
+            console.log("current page");
+            console.log(currentPage);
+
             console.log(result);
+            console.log(currentPage);
+
+            // currentPage.content = result.getCodeForContent ? result.getCodeForContent() : "No code for content";
             return true;
         }
         return Array.isArray(a.children) && a.children.some(iter);
@@ -95,7 +99,7 @@ const getMatchingPage = (pages, key) => {
  * @param {string} key - href key
  * @return {function} content for the page
  */
-const getPageContent = (pages, key) => getMatchingPage(pages, key).content;
+const getPageContent = (pages, key, currentPage) => getMatchingPage(pages, key, currentPage).content;
 /**
  * Page title for the header and Nav
  * @param {array} pages - list of page objects

@@ -96,6 +96,12 @@ class ResponsiveDrawer extends React.Component {
         this.setState(state => ({ mobileOpen: !state.mobileOpen }));
     };
 
+    handleCodeIconClick = () => {
+        this.setState(state => ({
+            showCode: !state.showCode
+        }));
+    };
+
     destroyContent() {
         if (this.graph) {
             this.graph.destroy();
@@ -105,17 +111,11 @@ class ResponsiveDrawer extends React.Component {
     renderContent() {
         const { currentPage, pages } = this.props;
         if (currentPage) {
-            this.graph = getPageContent(pages, currentPage.pathname)(
+            this.graph = getPageContent(pages, currentPage.pathname, currentPage)(
                 this.contentElement.id
             );
         }
     }
-
-    handleCodeIconClick = () => {
-        this.setState(state => ({
-            showCode: !state.showCode
-        }));
-    };
 
     render() {
         const { props, state } = this;
@@ -174,14 +174,14 @@ class ResponsiveDrawer extends React.Component {
                 </nav>
                 <div className={classes.contentRoot}>
                     <ContentBreadcrumb pathname={currentPage.pathname} />
-                    <Button variant="default" size="small" style={{width:"0.5rem"}}>
+                    <Button size="small" style={{width:"0.5rem"}}>
                         <CodeIcon
                             onClick={this.handleCodeIconClick}
                         />
                     </Button>
                     <AceEditor
                         style={showCode ? {display: ""} : {display: "none"}}
-                        value={currentPage.getCode ? currentPage.getCode() : "cannot display"}
+                        value={currentPage.content}
                         name="APP_CONTENT_CODE"
                         mode="javascript"
                         theme="twilight"
@@ -189,7 +189,7 @@ class ResponsiveDrawer extends React.Component {
                             showLineNumbers: true,
                             showGutter: true
                         }}
-                        readOnly={true}
+                        readOnly
                     />
                     <div
                         className={classes.content}
