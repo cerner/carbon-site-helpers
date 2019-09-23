@@ -5,10 +5,15 @@ import Hidden from "@material-ui/core/Hidden/index";
 import { withStyles } from "@material-ui/core/styles/index";
 import PropTypes from "prop-types";
 import React from "react";
-import Button from "@material-ui/core/Button";
 import AceEditor from "react-ace";
 import 'brace/theme/twilight';
 import 'brace/mode/javascript';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Typography from "@material-ui/core/Typography";
+
 import constants from "../../helpers/constants";
 import renderNavItems from "../../helpers/navItemHelpers";
 import {
@@ -62,13 +67,15 @@ const styles = theme => ({
     },
     showCodeSource: {
         display: "flex",
-        flexFlow: "row-reverse",
-        paddingBottom: "5px"
+        flexFlow: "row-reverse"
     },
     aceEditor: {
         width: "100% !important",
         position: "relative",
         marginBottom: "1rem"
+    },
+    expansionPanel: {
+        margin: "1rem 0"
     }
 });
 
@@ -81,8 +88,7 @@ class ResponsiveDrawer extends React.Component {
             this.contentElement = e;
         };
         this.state = {
-            mobileOpen: false,
-            showCode: false
+            mobileOpen: false
         };
     }
 
@@ -106,12 +112,6 @@ class ResponsiveDrawer extends React.Component {
         this.setState(state => ({ mobileOpen: !state.mobileOpen }));
     };
 
-    handleCodeIconClick = () => {
-        this.setState(state => ({
-            showCode: !state.showCode
-        }));
-    };
-
     destroyContent() {
         if (this.graph) {
             this.graph.destroy();
@@ -130,7 +130,7 @@ class ResponsiveDrawer extends React.Component {
     render() {
         const { props, state } = this;
         const { classes, pages, currentPage, gitHubURL } = props;
-        const { mobileOpen, showCode } = state;
+        const { mobileOpen } = state;
         const drawer = (
             <RouterContextConsumer>
                 {context => (
@@ -147,6 +147,31 @@ class ResponsiveDrawer extends React.Component {
                 )}
             </RouterContextConsumer>
         );
+
+        const codeViewer = getPageSource(pages, currentPage.pathname) ?
+            (
+                <ExpansionPanel className={classes.expansionPanel}>
+                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
+                        <Typography variant="button" color="secondary">
+                            Source
+                        </Typography>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                        <AceEditor
+                            className={classes.aceEditor}
+                            value={getPageSource(pages, currentPage.pathname)}
+                            name="APP_CONTENT_CODE"
+                            mode="javascript"
+                            theme="twilight"
+                            setOptions={{
+                                showLineNumbers: true,
+                                showGutter: true
+                            }}
+                            readOnly
+                        />
+                    </ExpansionPanelDetails>
+                </ExpansionPanel>
+            ) : null;
 
         return (
             <div className={classes.root}>
@@ -184,27 +209,7 @@ class ResponsiveDrawer extends React.Component {
                 </nav>
                 <div className={classes.contentRoot}>
                     <ContentBreadcrumb pathname={currentPage.pathname} />
-                    <div className={classes.showCodeSource}>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={this.handleCodeIconClick}>
-                            Source
-                        </Button>
-                    </div>
-                    <AceEditor
-                        style={showCode ? {display: ""} : {display: "none"}}
-                        className={classes.aceEditor}
-                        value={getPageSource(pages, currentPage.pathname)}
-                        name="APP_CONTENT_CODE"
-                        mode="javascript"
-                        theme="twilight"
-                        setOptions={{
-                            showLineNumbers: true,
-                            showGutter: true
-                        }}
-                        readOnly
-                    />
+                    {codeViewer}
                     <div
                         className={classes.content}
                         ref={this.setElementRef}

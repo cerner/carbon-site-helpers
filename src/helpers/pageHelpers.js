@@ -94,17 +94,17 @@ const getMatchingPage = (pages, key) => {
  */
 const getPageContent = (pages, key) => getMatchingPage(pages, key).content;
 /**
- * Returns the source code used to generate a content for a particular page
+ * Returns the source code for a particular page given page object and href key
  * @param {array} pages - list of page objects
  * @param {string} key - href key
- * @return {function} source code for the page
+ * @return {string} source code for the page represented as a string
  */
 const getPageSource = (pages, key) => {
     const currentPage = getMatchingPage(pages, key);
     if(currentPage.getCodeContent && typeof currentPage.getCodeContent === "function") {
         return getMatchingPage(pages, key).getCodeContent();
     }
-    return "No source available";
+    return "";
 };
 /**
  * Page title for the header and Nav
