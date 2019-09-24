@@ -5,15 +5,7 @@ import Hidden from "@material-ui/core/Hidden/index";
 import { withStyles } from "@material-ui/core/styles/index";
 import PropTypes from "prop-types";
 import React from "react";
-import AceEditor from "react-ace";
-import 'brace/theme/twilight';
-import 'brace/mode/javascript';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Typography from "@material-ui/core/Typography";
-
+import SourceCodeViewer from "../CodeViewer/SourceCodeViewer";
 import constants from "../../helpers/constants";
 import renderNavItems from "../../helpers/navItemHelpers";
 import {
@@ -61,7 +53,7 @@ const styles = theme => ({
         width: `calc(100vw - ${theme.spacing(2)}px)`, // The below width parameters are dependant on the paddingLeft of contentRoot
         [theme.breakpoints.up("sm")]: {
             width: `calc(100vw - ${constants.DRAWER_WIDTH +
-                theme.spacing(2)}px)`
+            theme.spacing(2)}px)`
         },
         height: `calc(100vh - ${theme.spacing(9)}px)`
     },
@@ -72,7 +64,7 @@ const styles = theme => ({
     aceEditor: {
         width: "100% !important",
         position: "relative",
-        marginBottom: "1rem"
+        marginBottom: theme.spacing(1)
     },
     expansionPanel: {
         margin: "1rem 0"
@@ -135,8 +127,8 @@ class ResponsiveDrawer extends React.Component {
             <RouterContextConsumer>
                 {context => (
                     <div>
-                        <ToolbarIcon />
-                        <Divider />
+                        <ToolbarIcon/>
+                        <Divider/>
                         {renderNavItems({
                             props,
                             pages,
@@ -150,32 +142,14 @@ class ResponsiveDrawer extends React.Component {
 
         const codeViewer = getPageSource(pages, currentPage.pathname) ?
             (
-                <ExpansionPanel className={classes.expansionPanel}>
-                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
-                        <Typography variant="button" color="secondary">
-                            Source
-                        </Typography>
-                    </ExpansionPanelSummary>
-                    <ExpansionPanelDetails>
-                        <AceEditor
-                            className={classes.aceEditor}
-                            value={getPageSource(pages, currentPage.pathname)}
-                            name="APP_CONTENT_CODE"
-                            mode="javascript"
-                            theme="twilight"
-                            setOptions={{
-                                showLineNumbers: true,
-                                showGutter: true
-                            }}
-                            readOnly
-                        />
-                    </ExpansionPanelDetails>
-                </ExpansionPanel>
+                <SourceCodeViewer
+                    code={getPageSource(pages, currentPage.pathname)}
+                />
             ) : null;
 
         return (
             <div className={classes.root}>
-                <CssBaseline />
+                <CssBaseline/>
                 <Header
                     onMenuClick={this.handleDrawerToggle}
                     title={getPageTitle(pages, currentPage.pathname)}
@@ -208,7 +182,7 @@ class ResponsiveDrawer extends React.Component {
                     </Hidden>
                 </nav>
                 <div className={classes.contentRoot}>
-                    <ContentBreadcrumb pathname={currentPage.pathname} />
+                    <ContentBreadcrumb pathname={currentPage.pathname}/>
                     {codeViewer}
                     <div
                         className={classes.content}
