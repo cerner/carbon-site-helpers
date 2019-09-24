@@ -94,6 +94,19 @@ const getMatchingPage = (pages, key) => {
  */
 const getPageContent = (pages, key) => getMatchingPage(pages, key).content;
 /**
+ * Returns the source code for a particular page given page object and href key
+ * @param {array} pages - list of page objects
+ * @param {string} key - href key
+ * @return {string} source code for the page represented as a string
+ */
+const getPageSource = (pages, key) => {
+    const currentPage = getMatchingPage(pages, key);
+    if(currentPage.getCodeContent && typeof currentPage.getCodeContent === "function") {
+        return getMatchingPage(pages, key).getCodeContent();
+    }
+    return "";
+};
+/**
  * Page title for the header and Nav
  * @param {array} pages - list of page objects
  * @param {string} key - href key
@@ -139,6 +152,7 @@ export {
     flatten,
     getHashedHref,
     getPageContent,
+    getPageSource,
     getPageTitle,
     convertPageToTitle,
     makeTitle,

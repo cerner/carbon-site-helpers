@@ -5,10 +5,12 @@ import Hidden from "@material-ui/core/Hidden/index";
 import { withStyles } from "@material-ui/core/styles/index";
 import PropTypes from "prop-types";
 import React from "react";
+import SourceCodeViewer from "../CodeViewer/SourceCodeViewer";
 import constants from "../../helpers/constants";
 import renderNavItems from "../../helpers/navItemHelpers";
 import {
     getPageContent,
+    getPageSource,
     getPageTitle,
     makeContentId
 } from "../../helpers/pageHelpers";
@@ -51,9 +53,21 @@ const styles = theme => ({
         width: `calc(100vw - ${theme.spacing(2)}px)`, // The below width parameters are dependant on the paddingLeft of contentRoot
         [theme.breakpoints.up("sm")]: {
             width: `calc(100vw - ${constants.DRAWER_WIDTH +
-                theme.spacing(2)}px)`
+            theme.spacing(2)}px)`
         },
         height: `calc(100vh - ${theme.spacing(9)}px)`
+    },
+    showCodeSource: {
+        display: "flex",
+        flexFlow: "row-reverse"
+    },
+    aceEditor: {
+        width: "100% !important",
+        position: "relative",
+        marginBottom: theme.spacing(1)
+    },
+    expansionPanel: {
+        margin: "1rem 0"
     }
 });
 
@@ -113,8 +127,8 @@ class ResponsiveDrawer extends React.Component {
             <RouterContextConsumer>
                 {context => (
                     <div>
-                        <ToolbarIcon />
-                        <Divider />
+                        <ToolbarIcon/>
+                        <Divider/>
                         {renderNavItems({
                             props,
                             pages,
@@ -126,9 +140,16 @@ class ResponsiveDrawer extends React.Component {
             </RouterContextConsumer>
         );
 
+        const codeViewer = getPageSource(pages, currentPage.pathname) ?
+            (
+                <SourceCodeViewer
+                    code={getPageSource(pages, currentPage.pathname)}
+                />
+            ) : null;
+
         return (
             <div className={classes.root}>
-                <CssBaseline />
+                <CssBaseline/>
                 <Header
                     onMenuClick={this.handleDrawerToggle}
                     title={getPageTitle(pages, currentPage.pathname)}
@@ -161,7 +182,8 @@ class ResponsiveDrawer extends React.Component {
                     </Hidden>
                 </nav>
                 <div className={classes.contentRoot}>
-                    <ContentBreadcrumb pathname={currentPage.pathname} />
+                    <ContentBreadcrumb pathname={currentPage.pathname}/>
+                    {codeViewer}
                     <div
                         className={classes.content}
                         ref={this.setElementRef}

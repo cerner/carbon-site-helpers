@@ -28,12 +28,17 @@ Repository containing helpers for Carbon Graphs Site. Uses Material UI and React
 -   dompurify
 -   axios
 -   marked
+-   brace
 
 ## Usage
 
 ```javascript
 import renderSiteApp from "@cerner/carbon-site-helpers";
 
+
+const contentSourceCode = function(id) {
+    document.querySelector(`#${id}`).innerHTML = "content/line/simple-line";
+};
 renderSiteApp(
     [
         {
@@ -45,7 +50,8 @@ renderSiteApp(
                     content: id => {
                         document.querySelector(`#${id}`).innerHTML =
                             "content/line/simple-line";
-                    }
+                    },
+                    getCodeContent: () => contentSourceCode.toString()
                 },
                 {
                     pathname: "/line/timeseries",
