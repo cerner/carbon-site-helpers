@@ -1,5 +1,5 @@
 import React from "react";
-import { withStyles } from "@material-ui/core/styles/index";
+import {makeStyles} from "@material-ui/core/styles";
 import AceEditor from "react-ace";
 import PropTypes from "prop-types";
 import Paper from "@material-ui/core/Paper";
@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import "brace/theme/twilight";
 import "brace/mode/javascript";
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
     aceEditor: {
         width: "100% !important",
         position: "relative",
@@ -20,16 +20,14 @@ const styles = theme => ({
     expansionPanelContainer: {
         margin: "1rem 0"
     }
-});
+}));
 
-function SourceCodeViewer(props) {
-    const { classes, code } = props;
+export default function SourceCodeViewer(props) {
+    const { code } = props;
+    const classes = useStyles();
     return (
         <Paper className={classes.expansionPanelContainer}>
-            <ExpansionPanel
-                classes={{
-                    square: false
-                }}>
+            <ExpansionPanel>
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIconRounded/>}>
                     <Typography variant="button" color="secondary">
                         Source
@@ -56,8 +54,5 @@ function SourceCodeViewer(props) {
 }
 
 SourceCodeViewer.propTypes = {
-    classes: PropTypes.objectOf(PropTypes.string).isRequired,
     code: PropTypes.string.isRequired
 };
-
-export default withStyles(styles, { withTheme: true })(SourceCodeViewer);
