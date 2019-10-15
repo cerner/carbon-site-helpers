@@ -30,4 +30,6 @@ CarbonMainIcon.defaultProps = {
     className: ""
 };
 
+CarbonMainIcon.muiName = "SvgIcon";
+
 export default withStyles(styles, { withTheme: true })(CarbonMainIcon);

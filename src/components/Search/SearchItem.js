@@ -8,7 +8,7 @@ import { makeSearchTitle } from "../../helpers/searchHelpers";
 
 const useStyles = makeStyles(theme => ({
     searchItemRoot: {
-        color: theme.palette.primary.dark,
+        color: theme.palette.text.primary,
         flex: 1,
         flexWrap: "wrap",
         whiteSpace: "normal",

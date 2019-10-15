@@ -16,13 +16,11 @@ const styles = theme => ({
         paddingBottom: "0 !important"
     },
     itemLeaf: {
-        color: theme.palette.primary.dark,
         display: "flex",
         paddingTop: "0 !important",
         paddingBottom: "0 !important"
     },
     button: {
-        color: theme.palette.primary.dark,
         fontSize: 16,
         letterSpacing: "0.5px",
         justifyContent: "flex-start",
@@ -30,19 +28,14 @@ const styles = theme => ({
         width: "100%"
     },
     buttonLeaf: {
-        color: theme.palette.primary.dark,
-        fontWeight: theme.typography.fontWeightRegular,
         fontSize: 14,
+        fontWeight: theme.typography.fontWeightRegular,
         justifyContent: "flex-start",
         textTransform: "none",
         width: "100%"
     },
     active: {
-        color: theme.palette.primary.main,
-        fontWeight: theme.typography.fontWeightMedium
-    },
-    regular: {
-        color: theme.palette.primary.dark
+        color: theme.palette.primary.main
     }
 });
 
@@ -102,13 +95,9 @@ class NavItem extends React.Component {
                             <Button
                                 component={React.forwardRef((props, ref) => (
                                     <Link
-                                        classes={{
-                                            root:
-                                                context.pathname === href
-                                                    ? classes.active
-                                                    : ""
-                                        }}
                                         ref={ref}
+                                        color="textPrimary"
+                                        underline="none"
                                         href={getHashedHref(href)}
                                         {...props}
                                     />
@@ -118,7 +107,6 @@ class NavItem extends React.Component {
                                     `depth-${depth}`
                                 )}
                                 disableRipple
-                                color="secondary"
                                 onClick={onClick}
                                 style={style}
                             >
@@ -137,7 +125,7 @@ class NavItem extends React.Component {
                         label: openImmediately ? "active" : ""
                     }}
                     onClick={this.handleClick}
-                    color="primary"
+                    color="default"
                     style={style}
                 >
                     {title}

@@ -14,7 +14,7 @@ export default {
     NOTFOUND_SECONDARY_TITLE: "Page Not Found",
     PATHNAME_PROPERTY: "pathname",
     SEARCH_PLACEHOLDER: "Search",
-    SEARCH_MAX_RESULTS: 10,
+    SEARCH_MAX_RESULTS: 15,
     DRAWER_WIDTH: 275,
     THEME: () =>
         createMuiTheme({
@@ -44,6 +44,6 @@ export default {
     VERSIONS_PATH: "versions",
     LOCAL_STORAGE: {
         GET_RELEASES_ETAG: "getReleasesETAG",
-        RELEASES_DATA: "releasesData",
+        RELEASES_DATA: "releasesData"
     }
 };

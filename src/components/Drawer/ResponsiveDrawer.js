@@ -11,7 +11,6 @@ import renderNavItems from "../../helpers/navItemHelpers";
 import {
     getPageContent,
     getPageSource,
-    getPageTitle,
     makeContentId
 } from "../../helpers/pageHelpers";
 import { RouterContextConsumer } from "../Context/RouterContext";
@@ -36,7 +35,7 @@ const styles = theme => ({
         }
     },
     drawerPaper: {
-        backgroundColor: theme.palette.background.paper,
+        background: theme.palette.background.paper,
         width: constants.DRAWER_WIDTH
     },
     contentRoot: {
@@ -53,7 +52,7 @@ const styles = theme => ({
         width: `calc(100vw - ${theme.spacing(2)}px)`, // The below width parameters are dependant on the paddingLeft of contentRoot
         [theme.breakpoints.up("sm")]: {
             width: `calc(100vw - ${constants.DRAWER_WIDTH +
-            theme.spacing(2)}px)`
+                theme.spacing(2)}px)`
         },
         height: `calc(100vh - ${theme.spacing(9)}px)`
     },
@@ -127,8 +126,8 @@ class ResponsiveDrawer extends React.Component {
             <RouterContextConsumer>
                 {context => (
                     <div>
-                        <ToolbarIcon/>
-                        <Divider/>
+                        <ToolbarIcon />
+                        <Divider />
                         {renderNavItems({
                             props,
                             pages,
@@ -140,19 +139,17 @@ class ResponsiveDrawer extends React.Component {
             </RouterContextConsumer>
         );
 
-        const codeViewer = getPageSource(pages, currentPage.pathname) ?
-            (
-                <SourceCodeViewer
-                    code={getPageSource(pages, currentPage.pathname)}
-                />
-            ) : null;
+        const codeViewer = getPageSource(pages, currentPage.pathname) ? (
+            <SourceCodeViewer
+                code={getPageSource(pages, currentPage.pathname)}
+            />
+        ) : null;
 
         return (
             <div className={classes.root}>
-                <CssBaseline/>
+                <CssBaseline />
                 <Header
                     onMenuClick={this.handleDrawerToggle}
-                    title={getPageTitle(pages, currentPage.pathname)}
                     pages={pages}
                     gitHubURL={gitHubURL}
                 />
@@ -182,7 +179,7 @@ class ResponsiveDrawer extends React.Component {
                     </Hidden>
                 </nav>
                 <div className={classes.contentRoot}>
-                    <ContentBreadcrumb pathname={currentPage.pathname}/>
+                    <ContentBreadcrumb pathname={currentPage.pathname} />
                     {codeViewer}
                     <div
                         className={classes.content}

@@ -9,19 +9,15 @@ import CarbonMainIcon from "../SvgIcons/CarbonMainIcon";
 
 const styles = theme => ({
     root: {
-        flex: "1 0 100%"
+        flex: "1 0 100%",
+        backgroundColor: theme.palette.background.paper
     },
     hero: {
-        height: `calc(100vh - ${theme.spacing(9)}px)`, // This is dependant on the height of the header
+        height: "100vh", // This is dependant on the height of the header
         flex: "0 0 auto",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: theme.palette.background.paper,
-        color:
-            theme.palette.type === "light"
-                ? theme.palette.primary.dark
-                : theme.palette.primary.main
+        alignItems: "center"
     },
     text: {
         display: "flex",
@@ -50,7 +46,6 @@ const styles = theme => ({
     },
     button: {
         marginTop: theme.spacing(3),
-        color: theme.palette.background.paper,
         fontSize: 16,
         [theme.breakpoints.only("xs")]: {
             fontSize: 12
@@ -86,22 +81,22 @@ function HomePageBlurb(props) {
                         <Typography
                             variant="h3"
                             component="h1"
-                            color="inherit"
+                            color="textPrimary"
                             gutterBottom
                             className={classes.title}
                         >
-                            {"Carbon"}
+                            Carbon
                         </Typography>
                         <Typography
                             variant="h5"
                             component="h2"
-                            color="inherit"
+                            color="textPrimary"
                             gutterBottom
                             className={classes.headline}
                         >
-                            {
-                                "A responsive graphing library built using d3 that integrates well with consumer's tech stack."
-                            }
+                            A lightweight, vanilla JavaScript visualization API
+                            built using D3 that integrates well with any
+                            consumer&apos;s tech stack.
                         </Typography>
                         <Button
                             component={React.forwardRef((buttonProps, ref) => (
@@ -109,12 +104,12 @@ function HomePageBlurb(props) {
                                     underline="none"
                                     ref={ref}
                                     href={startLink}
+                                    color="textPrimary"
                                     {...buttonProps}
                                 />
                             ))}
                             className={classes.button}
-                            variant="contained"
-                            color="primary"
+                            variant="outlined"
                         >
                             {constants.GETTING_STARTED}
                         </Button>

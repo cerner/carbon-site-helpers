@@ -1,5 +1,5 @@
 import React from "react";
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import AceEditor from "react-ace";
 import PropTypes from "prop-types";
 import Paper from "@material-ui/core/Paper";
@@ -28,8 +28,8 @@ export default function SourceCodeViewer(props) {
     return (
         <Paper className={classes.expansionPanelContainer}>
             <ExpansionPanel>
-                <ExpansionPanelSummary expandIcon={<ExpandMoreIconRounded/>}>
-                    <Typography variant="button" color="secondary">
+                <ExpansionPanelSummary expandIcon={<ExpandMoreIconRounded />}>
+                    <Typography variant="button" color="textPrimary">
                         Source
                     </Typography>
                 </ExpansionPanelSummary>

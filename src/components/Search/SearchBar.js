@@ -7,6 +7,7 @@ import SearchIcon from "@material-ui/icons/SearchRounded";
 import Downshift from "downshift";
 import PropTypes from "prop-types";
 import React from "react";
+import Box from "@material-ui/core/Box";
 import constants from "../../helpers/constants";
 import { flatten } from "../../helpers/pageHelpers";
 import { getFilteredSuggestions } from "../../helpers/searchHelpers";
@@ -66,13 +67,13 @@ const styles = theme => ({
 });
 
 function SearchBar(props) {
-    const { classes, pages, isHome, withNav } = props;
+    const { className, classes, pages, isHome, withNav } = props;
     const handleKeyDown = e => {
         e.preventDownshiftDefault =
             e.target.keyCode === 13 || e.key === "Enter";
     };
     return (
-        <>
+        <Box className={className}>
             {!isHome && withNav ? (
                 <Downshift id="downshift-popper">
                     {({
@@ -83,30 +84,32 @@ function SearchBar(props) {
                         inputValue,
                         isOpen
                     }) => (
-                        <div className={classes.container} title="Search" role="textbox">
-                            {
-                                <div className={classes.search}>
-                                    <div className={classes.searchIcon}>
-                                        <SearchIcon />
-                                    </div>
-                                    <Input
-                                        inputProps={getInputProps({
-                                            onKeyDown: handleKeyDown,
-                                            placeholder:
-                                                constants.SEARCH_PLACEHOLDER
-                                        })}
-                                        disableUnderline
-                                        inputRef={node => {
-                                            popperNode = node;
-                                        }}
-                                        type="search"
-                                        classes={{
-                                            root: classes.inputRoot,
-                                            input: classes.inputInput
-                                        }}
-                                    />
+                        <div
+                            className={classes.container}
+                            title="Search"
+                            role="textbox"
+                        >
+                            <div className={classes.search}>
+                                <div className={classes.searchIcon}>
+                                    <SearchIcon />
                                 </div>
-                            }
+                                <Input
+                                    inputProps={getInputProps({
+                                        onKeyDown: handleKeyDown,
+                                        placeholder:
+                                            constants.SEARCH_PLACEHOLDER
+                                    })}
+                                    disableUnderline
+                                    inputRef={node => {
+                                        popperNode = node;
+                                    }}
+                                    type="search"
+                                    classes={{
+                                        root: classes.inputRoot,
+                                        input: classes.inputInput
+                                    }}
+                                />
+                            </div>
                             <Popper open={isOpen} anchorEl={popperNode}>
                                 <div
                                     {...(isOpen
@@ -150,11 +153,12 @@ function SearchBar(props) {
             ) : (
                 ""
             )}
-        </>
+        </Box>
     );
 }
 
 SearchBar.propTypes = {
+    className: PropTypes.string,
     classes: PropTypes.objectOf(PropTypes.string).isRequired,
     pages: PropTypes.arrayOf(PropTypes.object),
     isHome: PropTypes.bool,
@@ -162,6 +166,7 @@ SearchBar.propTypes = {
 };
 
 SearchBar.defaultProps = {
+    className: "",
     pages: [],
     isHome: false,
     withNav: true

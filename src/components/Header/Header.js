@@ -3,7 +3,6 @@ import IconButton from "@material-ui/core/IconButton/index";
 import { withStyles } from "@material-ui/core/styles/index";
 import Toolbar from "@material-ui/core/Toolbar/index";
 import Tooltip from "@material-ui/core/Tooltip/index";
-import Typography from "@material-ui/core/Typography/index";
 import MenuIcon from "@material-ui/icons/MenuRounded";
 import classNames from "classnames";
 import PropTypes from "prop-types";
@@ -27,32 +26,26 @@ const styles = theme => ({
         flexBasis: "50%"
     },
     menuButton: {
+        order: 0,
         marginRight: 20,
         [theme.breakpoints.up("sm")]: {
             display: "none"
         }
     },
-    headerTitle: {
-        flexGrow: 1,
-        textOverflow: "ellipsis",
-        overflow: "hidden",
-        whiteSpace: "nowrap",
-        [theme.breakpoints.down("sm")]: {
-            fontSize: 18
-        }
+    appBarSearch: {
+        marginLeft: "auto",
+        order: 1
+    },
+    appBarRelease: {
+        order: 2
+    },
+    appBarGitHubIcon: {
+        order: 3
     }
 });
 
 function Header(props) {
-    const {
-        classes,
-        title,
-        onMenuClick,
-        isHome,
-        pages,
-        gitHubURL,
-        withNav
-    } = props;
+    const { classes, onMenuClick, isHome, pages, gitHubURL, withNav } = props;
     return (
         <AppBar
             position="fixed"
@@ -71,17 +64,22 @@ function Header(props) {
                 >
                     <MenuIcon />
                 </IconButton>
-                <Typography
-                    variant="h6"
-                    color="inherit"
-                    title={title}
-                    className={classes.headerTitle}
+                <SearchBar
+                    className={classes.appBarSearch}
+                    pages={pages}
+                    isHome={isHome}
+                    withNav={withNav}
+                />
+                <LatestReleasePage
+                    className={classes.appBarRelease}
+                    isHome={isHome}
+                    gitHubURL={gitHubURL}
+                />
+                <Tooltip
+                    className={classes.appBarRelease}
+                    title={constants.GITHUB_REPO_TOOLTIP}
+                    enterDelay={300}
                 >
-                    {title}
-                </Typography>
-                <SearchBar pages={pages} isHome={isHome} withNav={withNav} />
-                <LatestReleasePage isHome={isHome} gitHubURL={gitHubURL} />
-                <Tooltip title={constants.GITHUB_REPO_TOOLTIP} enterDelay={300}>
                     <IconButton
                         component="a"
                         color="inherit"
@@ -104,14 +102,12 @@ Header.propTypes = {
     classes: PropTypes.objectOf(PropTypes.string).isRequired,
     pages: PropTypes.arrayOf(PropTypes.object),
     onMenuClick: PropTypes.func,
-    title: PropTypes.string,
     isHome: PropTypes.bool,
     gitHubURL: PropTypes.string,
     withNav: PropTypes.bool
 };
 
 Header.defaultProps = {
-    title: "",
     pages: [],
     onMenuClick: () => {},
     isHome: false,

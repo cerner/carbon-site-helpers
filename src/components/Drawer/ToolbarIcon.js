@@ -18,12 +18,8 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "center"
     },
     title: {
-        color: theme.palette.text.primary,
         display: "flex",
-        marginBottom: theme.spacing(0.5),
-        "&:hover": {
-            color: theme.palette.primary.main
-        }
+        marginBottom: theme.spacing(0.5)
     },
     titleIcon: {
         margin: 0,
@@ -44,6 +40,7 @@ export default function ToolbarIcon() {
                 <Link
                     className={classes.title}
                     href={constants.HEADER_ROOT_LINK}
+                    color="textPrimary"
                     variant="h4"
                 >
                     <CarbonMainIcon className={classes.titleIcon} />

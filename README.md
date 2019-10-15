@@ -1,6 +1,6 @@
-<div align="center">
-    <img width="200" height="200" src="https://github.com/cerner/carbon-graphs/raw/master/build/assets/icons/Carbon_256.png">
-</div>
+<p align="center">
+    <img width="128" height="128" src="https://github.com/cerner/carbon-graphs/raw/master/build/assets/icons/Carbon_256.png">
+</p>
 
 <h1 align="center">
   Carbon Site Helpers
@@ -34,7 +34,6 @@ Repository containing helpers for Carbon Graphs Site. Uses Material UI and React
 
 ```javascript
 import renderSiteApp from "@cerner/carbon-site-helpers";
-
 
 const contentSourceCode = function(id) {
     document.querySelector(`#${id}`).innerHTML = "content/line/simple-line";
