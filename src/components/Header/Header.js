@@ -1,8 +1,8 @@
-import AppBar from "@material-ui/core/AppBar/index";
-import IconButton from "@material-ui/core/IconButton/index";
-import { withStyles } from "@material-ui/core/styles/index";
-import Toolbar from "@material-ui/core/Toolbar/index";
-import Tooltip from "@material-ui/core/Tooltip/index";
+import AppBar from "@material-ui/core/AppBar";
+import IconButton from "@material-ui/core/IconButton";
+import { withStyles } from "@material-ui/core/styles";
+import Toolbar from "@material-ui/core/Toolbar";
+import Tooltip from "@material-ui/core/Tooltip";
 import MenuIcon from "@material-ui/icons/MenuRounded";
 import classNames from "classnames";
 import PropTypes from "prop-types";

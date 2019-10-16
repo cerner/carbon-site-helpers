@@ -1,5 +1,3 @@
-"use strict";
-
 const path = require("path");
 
 module.exports = {
@@ -22,7 +20,10 @@ module.exports = {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                include: [path.join(__dirname, "../..", "src")],
+                include: [
+                    path.join(__dirname, "../..", "src"),
+                    path.join(__dirname, "../..", "dev")
+                ],
                 loader: "babel-loader",
                 options: {
                     presets: [

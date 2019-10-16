@@ -10,7 +10,8 @@ import { makeSearchTitle } from "../../helpers/searchHelpers";
 
 const useStyles = makeStyles(theme => ({
     root: {
-        display: "flex"
+        display: "flex",
+        background: theme.palette.background.default
     },
     homeIcon: {
         display: "flex",

@@ -1,5 +1,4 @@
 import CssBaseline from "@material-ui/core/CssBaseline/index";
-import Divider from "@material-ui/core/Divider/index";
 import Drawer from "@material-ui/core/Drawer/index";
 import Hidden from "@material-ui/core/Hidden/index";
 import { withStyles } from "@material-ui/core/styles/index";
@@ -49,7 +48,7 @@ const styles = theme => ({
         paddingRight: theme.spacing(1)
     },
     content: {
-        width: `calc(100vw - ${theme.spacing(2)}px)`, // The below width parameters are dependant on the paddingLeft of contentRoot
+        width: `calc(100vw - ${theme.spacing(2)}px)`,
         [theme.breakpoints.up("sm")]: {
             width: `calc(100vw - ${constants.DRAWER_WIDTH +
                 theme.spacing(2)}px)`
@@ -127,7 +126,6 @@ class ResponsiveDrawer extends React.Component {
                 {context => (
                     <div>
                         <ToolbarIcon />
-                        <Divider />
                         {renderNavItems({
                             props,
                             pages,

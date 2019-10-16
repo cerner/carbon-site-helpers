@@ -1,6 +1,7 @@
 const WebpackDevServer = require("webpack-dev-server");
 const webpack = require("webpack");
 const config = require("./webpack.dev.js");
+
 const compiler = webpack(config);
 const port = Number(process.env.PORT || 9992);
 const server = new WebpackDevServer(compiler, {
