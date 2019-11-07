@@ -4,7 +4,7 @@ import {retrieveReleases} from "../helpers/releasesInfo";
 const useReleases = (gitHubURL) => {
     const [releases, setReleases] = useState([]);
     useEffect(() => {
-        // Make a request to get releases
+        // Retrieve releases only if none present in localStorage
         if (!releases.length) {
             retrieveReleases(gitHubURL).then((response) => {
                 setReleases(response);
