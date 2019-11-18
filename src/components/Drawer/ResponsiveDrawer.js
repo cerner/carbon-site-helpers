@@ -119,7 +119,7 @@ class ResponsiveDrawer extends React.Component {
 
     render() {
         const { props, state } = this;
-        const { classes, pages, currentPage, gitHubURL } = props;
+        const { classes, pages, currentPage } = props;
         const { mobileOpen } = state;
         const drawer = (
             <RouterContextConsumer>
@@ -149,7 +149,6 @@ class ResponsiveDrawer extends React.Component {
                 <Header
                     onMenuClick={this.handleDrawerToggle}
                     pages={pages}
-                    gitHubURL={gitHubURL}
                 />
                 <nav className={classes.drawer}>
                     <Hidden smUp implementation="css">
@@ -194,8 +193,7 @@ class ResponsiveDrawer extends React.Component {
 ResponsiveDrawer.propTypes = {
     classes: PropTypes.objectOf(PropTypes.string).isRequired,
     pages: PropTypes.arrayOf(PropTypes.object).isRequired,
-    currentPage: PropTypes.objectOf(PropTypes.string).isRequired,
-    gitHubURL: PropTypes.string.isRequired
+    currentPage: PropTypes.objectOf(PropTypes.string).isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(ResponsiveDrawer);

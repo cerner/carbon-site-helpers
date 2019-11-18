@@ -6,6 +6,7 @@ import Box from "@material-ui/core/Box";
 import useReleases from "../../hooks/useReleases";
 import constants from "../../helpers/constants";
 import { getLatestRelease } from "../../helpers/releasesInfo";
+import { useReleasesURL } from "../../providers/releases/ReleasesURLProvider";
 
 const styles = theme => ({
     container: {
@@ -15,13 +16,14 @@ const styles = theme => ({
     }
 });
 const LatestReleasePage = props => {
-    const { className, classes, gitHubURL, isHome } = props;
+    const { className, classes, isHome } = props;
+    const [gitHubURL] = useReleasesURL();
+    const releases = useReleases(gitHubURL);
 
     if (isHome || !gitHubURL) {
         return "";
     }
 
-    const releases = useReleases(gitHubURL);
     return releases.length ? (
         <Box className={className}>
             <Chip
@@ -40,14 +42,12 @@ const LatestReleasePage = props => {
 LatestReleasePage.propTypes = {
     classes: PropTypes.objectOf(PropTypes.string).isRequired,
     className: PropTypes.string,
-    isHome: PropTypes.bool,
-    gitHubURL: PropTypes.string
+    isHome: PropTypes.bool
 };
 
 LatestReleasePage.defaultProps = {
     className: "",
-    isHome: false,
-    gitHubURL: ""
+    isHome: false
 };
 
 export default withStyles(styles, { withTheme: true })(LatestReleasePage);

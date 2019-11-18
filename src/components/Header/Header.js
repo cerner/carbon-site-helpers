@@ -11,6 +11,7 @@ import constants from "../../helpers/constants";
 import SearchBar from "../Search/SearchBar";
 import GithubIcon from "../SvgIcons/GitHubIcon";
 import LatestReleasePage from "../../pages/Releases/LatestReleasePage";
+import {useReleasesURL} from "../../providers/releases/ReleasesURLProvider";
 
 const styles = theme => ({
     appBarHome: {
@@ -45,7 +46,8 @@ const styles = theme => ({
 });
 
 function Header(props) {
-    const { classes, onMenuClick, isHome, pages, gitHubURL, withNav } = props;
+    const { classes, onMenuClick, isHome, pages, withNav } = props;
+    const [gitHubURL] = useReleasesURL();
     return (
         <AppBar
             position="fixed"
@@ -73,7 +75,6 @@ function Header(props) {
                 <LatestReleasePage
                     className={classes.appBarRelease}
                     isHome={isHome}
-                    gitHubURL={gitHubURL}
                 />
                 <Tooltip
                     className={classes.appBarRelease}
@@ -103,7 +104,6 @@ Header.propTypes = {
     pages: PropTypes.arrayOf(PropTypes.object),
     onMenuClick: PropTypes.func,
     isHome: PropTypes.bool,
-    gitHubURL: PropTypes.string,
     withNav: PropTypes.bool
 };
 
@@ -111,8 +111,7 @@ Header.defaultProps = {
     pages: [],
     onMenuClick: () => {},
     isHome: false,
-    withNav: true,
-    gitHubURL: ""
+    withNav: true
 };
 
 export default withStyles(styles, { withTheme: true })(Header);

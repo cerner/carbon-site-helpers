@@ -15,48 +15,51 @@ import {
     NotFoundPage,
     ReleasesPage
 } from "./pages";
+import {
+    ReleasesURLProvider
+} from "./providers/releases/ReleasesURLProvider";
 
 function AppRouter(props) {
     const { pages, startLink, gitHubURL } = props;
     return (
         <ThemeProvider theme={constants.THEME()}>
-            <HashRouter basename={process.env.PUBLIC_URL}>
-                <main>
-                    <Switch>
-                        {flatten(pages, constants.PATHNAME_PROPERTY).map(p => (
+            <ReleasesURLProvider gitHubURL={gitHubURL}>
+                <HashRouter basename={process.env.PUBLIC_URL}>
+                    <main>
+                        <Switch>
+                            {flatten(pages, constants.PATHNAME_PROPERTY).map(p => (
+                                <Route
+                                    exact
+                                    key={p}
+                                    path={p}
+                                    render={() => (
+                                        <GettingStartedPage
+                                            pages={pages}
+                                        />
+                                    )}
+                                />
+                            ))}
                             <Route
                                 exact
-                                key={p}
-                                path={p}
+                                path="/"
                                 render={() => (
-                                    <GettingStartedPage
-                                        pages={pages}
-                                        gitHubURL={gitHubURL}
+                                    <HomePage
+                                        startLink={startLink}
                                     />
                                 )}
                             />
-                        ))}
-                        <Route
-                            exact
-                            path="/"
-                            render={() => (
-                                <HomePage
-                                    startLink={startLink}
-                                    gitHubURL={gitHubURL}
-                                />
-                            )}
-                        />
-                        <Route
-                            exact
-                            path={`/${constants.VERSIONS_PATH}`}
-                            render={() => (
-                                <ReleasesPage gitHubURL={gitHubURL} />
-                            )}
-                        />
-                        <Route component={NotFoundPage} />
-                    </Switch>
-                </main>
-            </HashRouter>
+                            <Route
+                                exact
+                                path={`/${constants.VERSIONS_PATH}`}
+                                render={() => (
+                                    <ReleasesPage/>
+                                )}
+                            />
+                            <Route component={NotFoundPage}/>
+                        </Switch>
+                    </main>
+                </HashRouter>
+            </ReleasesURLProvider>
         </ThemeProvider>
     );
 }
