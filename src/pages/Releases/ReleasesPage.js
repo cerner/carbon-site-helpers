@@ -17,6 +17,7 @@ import CardContent from "@material-ui/core/CardContent";
 import useReleases from "../../hooks/useReleases";
 import Header from "../../components/Header/Header";
 import { isLatestRelease } from "../../helpers/releasesInfo";
+import { useReleasesURL } from "../../providers/releases/ReleasesURLProvider";
 
 const styles = theme => ({
     container: {
@@ -35,7 +36,8 @@ const styles = theme => ({
 });
 
 const ReleasesPage = props => {
-    const { classes, gitHubURL } = props;
+    const { classes } = props;
+    const [gitHubURL] = useReleasesURL();
     const versions = useReleases(gitHubURL);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -67,7 +69,7 @@ const ReleasesPage = props => {
 
     return (
         <Paper>
-            <Header withNav={false} gitHubURL={gitHubURL} />
+            <Header withNav={false}/>
             <>
                 <Table className={classes.container}>
                     <TableBody>
@@ -118,7 +120,6 @@ const ReleasesPage = props => {
 };
 
 ReleasesPage.propTypes = {
-    gitHubURL: PropTypes.string.isRequired,
     classes: PropTypes.objectOf(PropTypes.string).isRequired
 };
 
