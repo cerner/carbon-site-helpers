@@ -50,7 +50,7 @@
     "classnames": "^2.2.6",
     "dompurify": "^2.0.6",
     "downshift": "^3.3.4",
-    "marked": "^0.7.0",
+    "marked": "^0.8.0",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-ace": "^8.0.0",
