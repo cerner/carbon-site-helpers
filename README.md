@@ -10,7 +10,7 @@
 [![npm latest version](https://img.shields.io/npm/v/@cerner/carbon-site-helpers/latest.svg)](https://www.npmjs.com/package/@cerner/carbon-site-helpers)
 [![Cerner OSS](https://badgen.net/badge/Cerner/OSS/blue)](https://engineering.cerner.com/open_source/)
 [![License](https://badgen.net/badge/license/Apache-2.0/blue)](https://github.com/cerner/carbon-site-helpers/blob/master/LICENSE)
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release) [![Greenkeeper badge](https://badges.greenkeeper.io/cerner/carbon-site-helpers.svg)](https://greenkeeper.io/)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 Repository containing helpers for Carbon Graphs Site. Uses Material UI and React.
 
