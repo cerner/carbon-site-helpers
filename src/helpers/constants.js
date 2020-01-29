@@ -14,7 +14,7 @@ export default {
     NOTFOUND_SECONDARY_TITLE: "Page Not Found",
     PATHNAME_PROPERTY: "pathname",
     SEARCH_PLACEHOLDER: "Search",
-    SEARCH_MAX_RESULTS: 15,
+    SEARCH_MAX_RESULTS: 20,
     DRAWER_WIDTH: 275,
     THEME: () =>
         createMuiTheme({

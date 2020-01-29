@@ -1,3 +1,4 @@
+import Box from "@material-ui/core/Box";
 import Input from "@material-ui/core/Input";
 import Paper from "@material-ui/core/Paper";
 import Popper from "@material-ui/core/Popper";
@@ -6,14 +7,11 @@ import { withStyles } from "@material-ui/core/styles/index";
 import SearchIcon from "@material-ui/icons/SearchRounded";
 import Downshift from "downshift";
 import PropTypes from "prop-types";
-import React from "react";
-import Box from "@material-ui/core/Box";
+import React, { useState } from "react";
 import constants from "../../helpers/constants";
 import { flatten } from "../../helpers/pageHelpers";
 import { getFilteredSuggestions } from "../../helpers/searchHelpers";
 import SearchItem from "./SearchItem";
-
-let popperNode = null;
 
 const styles = theme => ({
     search: {
@@ -59,10 +57,6 @@ const styles = theme => ({
     },
     container: {
         position: "relative"
-    },
-    paperPopper: {
-        marginTop: theme.spacing(2.5),
-        marginLeft: theme.spacing(4)
     }
 });
 
@@ -72,6 +66,8 @@ function SearchBar(props) {
         e.preventDownshiftDefault =
             e.target.keyCode === 13 || e.key === "Enter";
     };
+    const [anchor, setAnchor] = useState(null);
+    const [anchorWidth, setAnchorWidth] = useState(0);
     return (
         <Box className={className}>
             {!isHome && withNav ? (
@@ -101,7 +97,11 @@ function SearchBar(props) {
                                     })}
                                     disableUnderline
                                     inputRef={node => {
-                                        popperNode = node;
+                                        if (!node) {
+                                            return;
+                                        }
+                                        setAnchor(node);
+                                        setAnchorWidth(node.clientWidth);
                                     }}
                                     type="search"
                                     classes={{
@@ -110,7 +110,12 @@ function SearchBar(props) {
                                     }}
                                 />
                             </div>
-                            <Popper open={isOpen} anchorEl={popperNode}>
+                            <Popper
+                                keepMounted
+                                disablePortal
+                                open={isOpen}
+                                anchorEl={anchor}
+                            >
                                 <div
                                     {...(isOpen
                                         ? getMenuProps(
@@ -120,12 +125,8 @@ function SearchBar(props) {
                                         : {})}
                                 >
                                     <Paper
-                                        elevation={2}
-                                        className={classes.paperPopper}
                                         style={{
-                                            width: popperNode
-                                                ? popperNode.clientWidth
-                                                : null
+                                            width: anchorWidth
                                         }}
                                     >
                                         {getFilteredSuggestions(

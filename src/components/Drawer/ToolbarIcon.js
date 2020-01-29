@@ -13,11 +13,11 @@ const useStyles = makeStyles(theme => ({
     },
     toolbar: {
         ...theme.mixins.toolbar,
-        paddingLeft: theme.spacing(5),
+        paddingLeft: theme.spacing(1),
         display: "flex",
         flexGrow: 1,
         flexDirection: "column",
-        alignItems: "flex-start",
+        alignItems: "center",
         justifyContent: "center"
     },
     title: {
