@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import SvgIcon from "../../../public/Carbon.svg";
 
-const styles = theme => ({
+const styles = (theme) => ({
     logo: {
         margin: `${theme.spacing(3)}px 0 ${theme.spacing(4)}px`,
         width: "100%",

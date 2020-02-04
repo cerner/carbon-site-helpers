@@ -18,13 +18,13 @@ renderSiteApp(
                     pathname: "/folder-1/file-1",
                     title: "File 1",
                     get content() {
-                        return id => appContent(id, this.pathname);
+                        return (id) => appContent(id, this.pathname);
                     }
                 },
                 {
                     pathname: "/folder-1/file-2",
                     get content() {
-                        return id => appContent(id, this.pathname);
+                        return (id) => appContent(id, this.pathname);
                     }
                 },
                 {
@@ -33,26 +33,26 @@ renderSiteApp(
                         {
                             pathname: "/folder-1/nested-folder/nested-file",
                             get content() {
-                                return id => appContent(id, this.pathname);
+                                return (id) => appContent(id, this.pathname);
                             }
                         },
                         {
                             pathname: "/folder-1/nested-folder/nested-file-2",
                             get content() {
-                                return id => appContent(id, this.pathname);
+                                return (id) => appContent(id, this.pathname);
                             }
                         },
                         {
                             pathname:
                                 "/folder-1/nested-folder/nested-file-long-name-to-work-with",
                             get content() {
-                                return id => appContent(id, this.pathname);
+                                return (id) => appContent(id, this.pathname);
                             }
                         },
                         {
                             pathname: "/folder-1/nested-folder/nested-file-3",
                             get content() {
-                                return id => appContent(id, this.pathname);
+                                return (id) => appContent(id, this.pathname);
                             }
                         }
                     ]
@@ -65,13 +65,13 @@ renderSiteApp(
                 {
                     pathname: "/folder-2/file-1",
                     get content() {
-                        return id => appContent(id, this.pathname);
+                        return (id) => appContent(id, this.pathname);
                     }
                 },
                 {
                     pathname: "/folder-2/file-2",
                     get content() {
-                        return id => appContent(id, this.pathname);
+                        return (id) => appContent(id, this.pathname);
                     }
                 }
             ]
@@ -79,7 +79,7 @@ renderSiteApp(
         {
             pathname: "/folder-leaf",
             get content() {
-                return id => appContent(id, this.pathname);
+                return (id) => appContent(id, this.pathname);
             }
         }
     ],

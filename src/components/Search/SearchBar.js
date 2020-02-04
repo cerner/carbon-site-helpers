@@ -13,7 +13,7 @@ import { flatten } from "../../helpers/pageHelpers";
 import { getFilteredSuggestions } from "../../helpers/searchHelpers";
 import SearchItem from "./SearchItem";
 
-const styles = theme => ({
+const styles = (theme) => ({
     search: {
         position: "relative",
         borderRadius: theme.shape.borderRadius,
@@ -62,7 +62,7 @@ const styles = theme => ({
 
 function SearchBar(props) {
     const { className, classes, pages, isHome, withNav } = props;
-    const handleKeyDown = e => {
+    const handleKeyDown = (e) => {
         e.preventDownshiftDefault =
             e.target.keyCode === 13 || e.key === "Enter";
     };
@@ -96,7 +96,7 @@ function SearchBar(props) {
                                             constants.SEARCH_PLACEHOLDER
                                     })}
                                     disableUnderline
-                                    inputRef={node => {
+                                    inputRef={(node) => {
                                         if (!node) {
                                             return;
                                         }

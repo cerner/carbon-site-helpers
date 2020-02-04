@@ -8,7 +8,7 @@ import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import Box from "@material-ui/core/Box";
 import { makeSearchTitle } from "../../helpers/searchHelpers";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     root: {
         display: "flex",
         background: theme.palette.background.default
@@ -46,7 +46,7 @@ export default function ContentBreadcrumb(props) {
                 separator={<NavigateNextIcon fontSize="small" />}
                 aria-label="breadcrumb"
             >
-                {pathPartitions.map(p => (
+                {pathPartitions.map((p) => (
                     <Typography variant="button" key={p}>
                         {p.trim()}
                     </Typography>

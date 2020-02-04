@@ -1,13 +1,13 @@
 import PropTypes from "prop-types";
 import React from "react";
-import HomePageBlurb from "../../components/Content/HomePageBlurb";
+import HomePageBlurb from "../../components/Home/HomePageBlurb";
 import Header from "../../components/Header/Header";
 
 function HomePage(props) {
     const { startLink } = props;
     return (
         <>
-            <Header isHome/>
+            <Header isHome />
             <HomePageBlurb startLink={startLink} />
         </>
     );

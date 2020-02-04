@@ -11,11 +11,10 @@ import constants from "../../helpers/constants";
 import SearchBar from "../Search/SearchBar";
 import GithubIcon from "../SvgIcons/GitHubIcon";
 import LatestReleasePage from "../../pages/Releases/LatestReleasePage";
-import {useReleasesURL} from "../../providers/releases/ReleasesURLProvider";
+import { useReleasesURL } from "../../providers/releases/ReleasesURLProvider";
 
-const styles = theme => ({
+const styles = (theme) => ({
     appBarHome: {
-        boxShadow: "none",
         backgroundColor: theme.palette.primary.main,
         transition: "width 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms"
     },

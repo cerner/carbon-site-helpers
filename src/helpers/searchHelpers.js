@@ -14,7 +14,7 @@ const getFilteredSuggestions = (suggestions, value) => {
     }
     return suggestions
         .filter(
-            s =>
+            (s) =>
                 makeTitle(s.pathname)
                     .toLowerCase()
                     .indexOf(inputValue) > -1
@@ -27,7 +27,7 @@ const getFilteredSuggestions = (suggestions, value) => {
  * "/grid/line/horizontal-grid-hidden" becomes "Grid  >  Line  >  Horizontal Grid Hidden"
  * @param {string} title - Search Result pathname
  */
-const makeSearchTitle = title =>
+const makeSearchTitle = (title) =>
     makeTitle(title.substr(1).replace(/\//g, "- > -"));
 
 export { getFilteredSuggestions, makeSearchTitle };

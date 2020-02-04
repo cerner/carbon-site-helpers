@@ -15,9 +15,7 @@ import {
     NotFoundPage,
     ReleasesPage
 } from "./pages";
-import {
-    ReleasesURLProvider
-} from "./providers/releases/ReleasesURLProvider";
+import { ReleasesURLProvider } from "./providers/releases/ReleasesURLProvider";
 
 function AppRouter(props) {
     const { pages, startLink, gitHubURL } = props;
@@ -27,35 +25,31 @@ function AppRouter(props) {
                 <HashRouter basename={process.env.PUBLIC_URL}>
                     <main>
                         <Switch>
-                            {flatten(pages, constants.PATHNAME_PROPERTY).map(p => (
-                                <Route
-                                    exact
-                                    key={p}
-                                    path={p}
-                                    render={() => (
-                                        <GettingStartedPage
-                                            pages={pages}
-                                        />
-                                    )}
-                                />
-                            ))}
+                            {flatten(pages, constants.PATHNAME_PROPERTY).map(
+                                (p) => (
+                                    <Route
+                                        exact
+                                        key={p}
+                                        path={p}
+                                        render={() => (
+                                            <GettingStartedPage pages={pages} />
+                                        )}
+                                    />
+                                )
+                            )}
                             <Route
                                 exact
                                 path="/"
                                 render={() => (
-                                    <HomePage
-                                        startLink={startLink}
-                                    />
+                                    <HomePage startLink={startLink} />
                                 )}
                             />
                             <Route
                                 exact
                                 path={`/${constants.VERSIONS_PATH}`}
-                                render={() => (
-                                    <ReleasesPage/>
-                                )}
+                                render={() => <ReleasesPage />}
                             />
-                            <Route component={NotFoundPage}/>
+                            <Route component={NotFoundPage} />
                         </Switch>
                     </main>
                 </HashRouter>

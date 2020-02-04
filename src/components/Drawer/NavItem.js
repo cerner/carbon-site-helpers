@@ -9,7 +9,7 @@ import React from "react";
 import { getHashedHref } from "../../helpers/pageHelpers";
 import { RouterContextConsumer } from "../Context/RouterContext";
 
-const styles = theme => ({
+const styles = (theme) => ({
     item: {
         display: "block !important",
         paddingTop: "0 !important",
@@ -63,7 +63,7 @@ class NavItem extends React.Component {
     }
 
     handleClick = () => {
-        this.setState(state => ({ open: !state.open }));
+        this.setState((state) => ({ open: !state.open }));
     };
 
     render() {
@@ -85,7 +85,7 @@ class NavItem extends React.Component {
         if (href) {
             return (
                 <RouterContextConsumer>
-                    {context => (
+                    {(context) => (
                         <ListItem
                             selected={context.pathname === href}
                             className={classes.itemLeaf}

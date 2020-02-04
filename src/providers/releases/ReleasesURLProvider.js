@@ -7,7 +7,9 @@ const ReleasesURLContext = createContext();
 const useReleasesURL = () => {
     const context = useContext(ReleasesURLContext);
     if (context === undefined) {
-        throw new Error("useReleasesURL must be used within ReleasesURLProvider");
+        throw new Error(
+            "useReleasesURL must be used within ReleasesURLProvider"
+        );
     }
     return context;
 };
@@ -28,8 +30,7 @@ ReleasesURLProvider.propTypes = {
 };
 
 ReleasesURLProvider.defaultProps = {
-  gitHubURL: ""
+    gitHubURL: ""
 };
 
 export { ReleasesURLProvider, useReleasesURL };
-

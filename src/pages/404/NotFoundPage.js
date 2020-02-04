@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import constants from "../../helpers/constants";
 
-const styles = theme => ({
+const styles = (theme) => ({
     root: {
         flex: "1",
         height: `calc(100vh - ${theme.spacing(5)}px)`,

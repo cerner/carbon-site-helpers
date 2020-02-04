@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/styles";
 import { getHashedHref } from "../../helpers/pageHelpers";
 import { makeSearchTitle } from "../../helpers/searchHelpers";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     searchItemRoot: {
         color: theme.palette.text.primary,
         flex: 1,

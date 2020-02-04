@@ -8,14 +8,14 @@ import constants from "../../helpers/constants";
 import { getLatestRelease } from "../../helpers/releasesInfo";
 import { useReleasesURL } from "../../providers/releases/ReleasesURLProvider";
 
-const styles = theme => ({
+const styles = (theme) => ({
     container: {
         marginLeft: "10px",
         fontWeight: "bold",
         background: theme.palette.background.paper
     }
 });
-const LatestReleasePage = props => {
+const LatestReleasePage = (props) => {
     const { className, classes, isHome } = props;
     const [gitHubURL] = useReleasesURL();
     const releases = useReleases(gitHubURL);

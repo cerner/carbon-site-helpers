@@ -8,10 +8,7 @@ function GettingStartedPage(props) {
     const { pages, location } = props;
     return (
         <RouterContextProvider value={location}>
-            <ResponsiveDrawer
-                pages={pages}
-                currentPage={location}
-            />
+            <ResponsiveDrawer pages={pages} currentPage={location} />
         </RouterContextProvider>
     );
 }

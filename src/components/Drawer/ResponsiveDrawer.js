@@ -17,7 +17,7 @@ import Header from "../Header/Header";
 import ToolbarIcon from "./ToolbarIcon";
 import ContentBreadcrumb from "./ContentBreadcrumb";
 
-const styles = theme => ({
+const styles = (theme) => ({
     root: {
         display: "flex"
     },
@@ -74,7 +74,7 @@ class ResponsiveDrawer extends React.Component {
         super(props);
         this.graph = null;
         this.contentElement = null;
-        this.setElementRef = e => {
+        this.setElementRef = (e) => {
             this.contentElement = e;
         };
         this.state = {
@@ -99,7 +99,7 @@ class ResponsiveDrawer extends React.Component {
     }
 
     handleDrawerToggle = () => {
-        this.setState(state => ({ mobileOpen: !state.mobileOpen }));
+        this.setState((state) => ({ mobileOpen: !state.mobileOpen }));
     };
 
     destroyContent() {
@@ -111,9 +111,10 @@ class ResponsiveDrawer extends React.Component {
     renderContent() {
         const { currentPage, pages } = this.props;
         if (currentPage) {
-            this.graph = getPageContent(pages, currentPage.pathname)(
-                this.contentElement.id
-            );
+            this.graph = getPageContent(
+                pages,
+                currentPage.pathname
+            )(this.contentElement.id);
         }
     }
 
@@ -123,7 +124,7 @@ class ResponsiveDrawer extends React.Component {
         const { mobileOpen } = state;
         const drawer = (
             <RouterContextConsumer>
-                {context => (
+                {(context) => (
                     <div>
                         <ToolbarIcon />
                         {renderNavItems({
@@ -146,10 +147,7 @@ class ResponsiveDrawer extends React.Component {
         return (
             <div className={classes.root}>
                 <CssBaseline />
-                <Header
-                    onMenuClick={this.handleDrawerToggle}
-                    pages={pages}
-                />
+                <Header onMenuClick={this.handleDrawerToggle} pages={pages} />
                 <nav className={classes.drawer}>
                     <Hidden smUp implementation="css">
                         <Drawer

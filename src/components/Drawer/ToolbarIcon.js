@@ -6,7 +6,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import constants from "../../helpers/constants";
 import CarbonMainIcon from "../SvgIcons/CarbonMainIcon";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     toolbarContainer: {
         display: "flex",
         background: theme.palette.background.default
@@ -21,8 +21,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "center"
     },
     title: {
-        display: "flex",
-        marginBottom: theme.spacing(0.5)
+        display: "flex"
     },
     titleIcon: {
         margin: 0,
@@ -44,7 +43,7 @@ export default function ToolbarIcon() {
                     className={classes.title}
                     href={constants.HEADER_ROOT_LINK}
                     color="textPrimary"
-                    underline="none"
+                    underline="hover"
                     variant="h4"
                 >
                     <CarbonMainIcon className={classes.titleIcon} />

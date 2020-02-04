@@ -1,13 +1,13 @@
-import Button from "@material-ui/core/Button/index";
-import Link from "@material-ui/core/Link/index";
-import { withStyles } from "@material-ui/core/styles/index";
-import Typography from "@material-ui/core/Typography/index";
+import Button from "@material-ui/core/Button";
+import Link from "@material-ui/core/Link";
+import { withStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
 import React from "react";
 import constants from "../../helpers/constants";
 import CarbonMainIcon from "../SvgIcons/CarbonMainIcon";
 
-const styles = theme => ({
+const styles = (theme) => ({
     root: {
         flex: "1 0 100%",
         backgroundColor: theme.palette.background.paper
@@ -109,7 +109,8 @@ function HomePageBlurb(props) {
                                 />
                             ))}
                             className={classes.button}
-                            variant="outlined"
+                            color="primary"
+                            variant="contained"
                         >
                             {constants.GETTING_STARTED}
                         </Button>

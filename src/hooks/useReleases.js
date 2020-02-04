@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import {retrieveReleases} from "../helpers/releasesInfo";
+import { retrieveReleases } from "../helpers/releasesInfo";
 
 const useReleases = (gitHubURL) => {
     const [releases, setReleases] = useState([]);

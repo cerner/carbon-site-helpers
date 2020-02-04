@@ -3,7 +3,7 @@
  * @param {string} startLink - string to be used as href
  * @throws Add a valid getting started link
  */
-const validateStartLink = startLink => {
+const validateStartLink = (startLink) => {
     if (!startLink || typeof startLink !== "string") {
         throw new Error(`Add a valid getting started link`);
     }
@@ -14,8 +14,8 @@ const validateStartLink = startLink => {
  * @throws Add a valid path
  * @throws Add a content along with the URL for path
  */
-const validatePageObject = pageObject => {
-    pageObject.forEach(p => {
+const validatePageObject = (pageObject) => {
+    pageObject.forEach((p) => {
         if (!p.pathname) {
             throw new Error(`Add a valid path`);
         }
@@ -38,14 +38,14 @@ const validatePageObject = pageObject => {
 const makeTitle = (str, delimiter = "-") =>
     str
         .split(delimiter)
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" ");
 /**
  * Converts page pathname to title or uses title property if available.
  * @param {object} page - Page object
  * @returns {string} Page title shown in Navigation panel
  */
-const convertPageToTitle = page => {
+const convertPageToTitle = (page) => {
     if (page.title) {
         return page.title;
     }
@@ -59,7 +59,7 @@ const convertPageToTitle = page => {
  * @returns {array} List of objects containing property
  */
 const getPageProperty = (pages, property) =>
-    pages.map(p =>
+    pages.map((p) =>
         p.children
             ? getPageProperty(p.children, property)
             : property
@@ -76,7 +76,7 @@ const getPageProperty = (pages, property) =>
  */
 const getMatchingPage = (pages, key) => {
     let result = {};
-    const iter = a => {
+    const iter = (a) => {
         if (a.pathname === key) {
             result = a;
             return true;
@@ -101,7 +101,10 @@ const getPageContent = (pages, key) => getMatchingPage(pages, key).content;
  */
 const getPageSource = (pages, key) => {
     const currentPage = getMatchingPage(pages, key);
-    if(currentPage.getCodeContent && typeof currentPage.getCodeContent === "function") {
+    if (
+        currentPage.getCodeContent &&
+        typeof currentPage.getCodeContent === "function"
+    ) {
         return getMatchingPage(pages, key).getCodeContent();
     }
     return "";
@@ -124,7 +127,7 @@ const getPageTitle = (pages, key) =>
  */
 const flatten = (pages, property) => {
     const result = [].concat(...getPageProperty(pages, property));
-    if (!property && result.some(p => Array.isArray(p))) {
+    if (!property && result.some((p) => Array.isArray(p))) {
         return flatten(result, property);
     }
     return result;
@@ -134,13 +137,13 @@ const flatten = (pages, property) => {
  * @param {string} page - pathname url
  * @return {string} href
  */
-const getHashedHref = page => `#${page}`;
+const getHashedHref = (page) => `#${page}`;
 /**
  * Constructs unique id based on base64 string encoded path href
  * @param {string} path - href pathname
  * @returns {string} unique id
  */
-const makeContentId = path =>
+const makeContentId = (path) =>
     `carbon_id_${btoa(path)
         .substr(path.length - 1)
         .match(/([0-9aA-zZ])\w+/g)

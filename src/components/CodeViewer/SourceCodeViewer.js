@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import "brace/theme/twilight";
 import "brace/mode/javascript";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     aceEditor: {
         width: "100% !important",
         position: "relative",

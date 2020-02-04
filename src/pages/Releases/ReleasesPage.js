@@ -19,7 +19,7 @@ import Header from "../../components/Header/Header";
 import { isLatestRelease } from "../../helpers/releasesInfo";
 import { useReleasesURL } from "../../providers/releases/ReleasesURLProvider";
 
-const styles = theme => ({
+const styles = (theme) => ({
     container: {
         marginTop: theme.spacing(9)
     },
@@ -35,7 +35,7 @@ const styles = theme => ({
     }
 });
 
-const ReleasesPage = props => {
+const ReleasesPage = (props) => {
     const { classes } = props;
     const [gitHubURL] = useReleasesURL();
     const versions = useReleases(gitHubURL);
@@ -47,7 +47,7 @@ const ReleasesPage = props => {
         return { __html: rawMarkup };
     }
 
-    const getReleaseDetails = version => {
+    const getReleaseDetails = (version) => {
         return (
             <div
                 key={version.id}
@@ -58,7 +58,7 @@ const ReleasesPage = props => {
     };
 
     const handlePageChange = (event, newPage) => setPage(newPage);
-    const handleChangeRowsPerPage = event => {
+    const handleChangeRowsPerPage = (event) => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
@@ -69,7 +69,7 @@ const ReleasesPage = props => {
 
     return (
         <Paper>
-            <Header withNav={false}/>
+            <Header withNav={false} />
             <>
                 <Table className={classes.container}>
                     <TableBody>
@@ -78,7 +78,7 @@ const ReleasesPage = props => {
                                 page * rowsPerPage,
                                 page * rowsPerPage + rowsPerPage
                             )
-                            .map(v => (
+                            .map((v) => (
                                 <TableRow key={v.id}>
                                     <TableCell className={classes.cardHolder}>
                                         <Card
