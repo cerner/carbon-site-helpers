@@ -15,7 +15,7 @@ const styles = (theme) => ({
         background: theme.palette.background.paper
     }
 });
-const LatestReleasePage = (props) => {
+const LatestRelease = (props) => {
     const { className, classes, isHome } = props;
     const [gitHubURL] = useReleasesURL();
     const releases = useReleases(gitHubURL);
@@ -39,15 +39,15 @@ const LatestReleasePage = (props) => {
     );
 };
 
-LatestReleasePage.propTypes = {
+LatestRelease.propTypes = {
     classes: PropTypes.objectOf(PropTypes.string).isRequired,
     className: PropTypes.string,
     isHome: PropTypes.bool
 };
 
-LatestReleasePage.defaultProps = {
+LatestRelease.defaultProps = {
     className: "",
     isHome: false
 };
 
-export default withStyles(styles, { withTheme: true })(LatestReleasePage);
+export default withStyles(styles, { withTheme: true })(LatestRelease);

@@ -10,7 +10,7 @@ import React from "react";
 import constants from "../../helpers/constants";
 import SearchBar from "../Search/SearchBar";
 import GithubIcon from "../SvgIcons/GitHubIcon";
-import LatestReleasePage from "../../pages/Releases/LatestReleasePage";
+import LatestRelease from "../Releases/LatestReleasePage";
 import { useReleasesURL } from "../../providers/releases/ReleasesURLProvider";
 
 const styles = (theme) => ({
@@ -71,7 +71,7 @@ function Header(props) {
                     isHome={isHome}
                     withNav={withNav}
                 />
-                <LatestReleasePage
+                <LatestRelease
                     className={classes.appBarRelease}
                     isHome={isHome}
                 />
