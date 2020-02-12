@@ -19,6 +19,13 @@ const styles = (theme) => ({
         justifyContent: "center",
         alignItems: "center"
     },
+    content: {
+        display: "flex",
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "column"
+    },
     text: {
         display: "flex",
         flexDirection: "column",

@@ -2,22 +2,25 @@ import { withStyles } from "@material-ui/core/styles/index";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import React from "react";
-import SvgIcon from "../../../public/Carbon.svg";
+import CarbonLogo from "../../../public/Carbon.svg";
 
 const styles = (theme) => ({
     logo: {
         margin: `${theme.spacing(3)}px 0 ${theme.spacing(4)}px`,
-        width: "100%",
         height: "35vw",
-        maxHeight: 250
+        maxHeight: 250,
+        "&:hover": {
+            transition: "transform 0.75s ease-in-out",
+            transitionDelay: "0.3s",
+            transform: "rotateZ(360deg)"
+        }
     }
 });
 
 const CarbonMainIcon = ({ classes, className }) => (
-    <img
+    <CarbonLogo
+        id="carbon-logo"
         className={classNames(classes.logo, className)}
-        alt="Home"
-        src={SvgIcon}
     />
 );
 
