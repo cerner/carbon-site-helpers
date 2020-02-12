@@ -125,6 +125,7 @@ function SearchBar(props) {
                                         : {})}
                                 >
                                     <Paper
+                                        elevation={10}
                                         style={{
                                             width: anchorWidth
                                         }}
