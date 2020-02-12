@@ -34,7 +34,7 @@ const styles = (theme) => ({
         }
     },
     drawerPaper: {
-        background: theme.palette.background.paper,
+        background: theme.palette.background.custom,
         width: constants.DRAWER_WIDTH
     },
     contentRoot: {

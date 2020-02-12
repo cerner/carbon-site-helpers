@@ -10,7 +10,7 @@ import CarbonMainIcon from "../SvgIcons/CarbonMainIcon";
 const styles = (theme) => ({
     root: {
         flex: "1 0 100%",
-        backgroundColor: theme.palette.background.paper
+        backgroundColor: theme.palette.background.custom
     },
     hero: {
         height: "100vh", // This is dependant on the height of the header
