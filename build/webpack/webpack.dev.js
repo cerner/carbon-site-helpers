@@ -56,15 +56,5 @@ module.exports = {
                 loader: "style-loader!css-loader!less-loader"
             }
         ]
-    },
-    stats: {
-        colors: true,
-        errorDetails: true,
-        chunks: false,
-        entrypoints: false,
-        chunkModules: false,
-        chunkOrigins: false,
-        modules: false,
-        warnings: false
     }
 };
