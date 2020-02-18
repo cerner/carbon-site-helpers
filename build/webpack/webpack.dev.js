@@ -39,13 +39,10 @@ module.exports = {
                                 helpers: true,
                                 regenerator: true
                             }
-                        ]
+                        ],
+                        ["inline-react-svg"]
                     ]
                 }
-            },
-            {
-                test: /\.svg$/,
-                loader: "@svgr/webpack"
             },
             {
                 test: /\.(png|gif|jpg|jpeg)$/,
