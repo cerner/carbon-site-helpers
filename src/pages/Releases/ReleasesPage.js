@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import marked from "marked";
+import marked from "marked/lib/marked";
 import { withStyles } from "@material-ui/core/styles/index";
 import DOMPurify from "dompurify";
 import classNames from "classnames";
