@@ -87,7 +87,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-material-ui": "^1.0.1",
     "eslint-plugin-react": "^7.18.3",
-    "eslint-plugin-react-hooks": "^2.4.0",
+    "eslint-plugin-react-hooks": "^3.0.0",
     "husky": "^4.2.3",
     "less": "^3.11.1",
     "less-loader": "^5.0.0",
