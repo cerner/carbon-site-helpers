@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import marked from "marked/lib/marked";
 import { withStyles } from "@material-ui/core/styles/index";
 import DOMPurify from "dompurify";
 import classNames from "classnames";
@@ -18,6 +17,8 @@ import useReleases from "../../hooks/useReleases";
 import Header from "../../components/Header/Header";
 import { isLatestRelease } from "../../helpers/releasesInfo";
 import { useReleasesURL } from "../../providers/releases/ReleasesURLProvider";
+
+const marked = require('marked/lib/marked');
 
 const styles = (theme) => ({
     container: {
