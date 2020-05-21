@@ -15,6 +15,7 @@ const styles = (theme) => ({
         background: theme.palette.background.paper
     }
 });
+
 const LatestRelease = (props) => {
     const { className, classes, isHome } = props;
     const [gitHubURL] = useReleasesURL();
