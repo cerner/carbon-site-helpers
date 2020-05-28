@@ -8,6 +8,7 @@ const validateStartLink = (startLink) => {
         throw new Error(`Add a valid getting started link`);
     }
 };
+
 /**
  * Validates page object input
  * @param {array} pageObject - Page object containing pathname and content
