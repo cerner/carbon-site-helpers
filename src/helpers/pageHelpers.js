@@ -30,6 +30,7 @@ const validatePageObject = (pageObject) => {
         }
     });
 };
+
 /**
  * Returns the title shown within the nav section
  * @param {string} str - pathname or title
