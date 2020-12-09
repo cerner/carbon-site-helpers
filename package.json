@@ -103,7 +103,8 @@
   },
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "/src"
   ],
   "greenkeeper": {
     "commitMessages": {
