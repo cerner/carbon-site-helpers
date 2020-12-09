@@ -1,5 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import "@babel/polyfill";
+import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
 import renderSiteApp from "../src/App";
 import "./index.less";
 
