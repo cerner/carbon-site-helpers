@@ -13,7 +13,6 @@ npm-debug.log
 .coverage
 
 # production
-dist
 lib
 .site
 
