@@ -119,6 +119,7 @@ class ResponsiveDrawer extends React.Component {
     }
 
     render() {
+        debugger;
         const { props, state } = this;
         const { classes, pages, currentPage } = props;
         const { mobileOpen } = state;
@@ -177,11 +178,17 @@ class ResponsiveDrawer extends React.Component {
                     <ContentBreadcrumb pathname={currentPage.pathname} />
                     {codeViewer}
                     <div
+                        className='extraDiv'
+                        /* eslint-disable-next-line react/style-prop-object */
+                        style={ {display: 'block'}}
+                    >
+                    <div
                         className={classes.content}
                         ref={this.setElementRef}
                         id={makeContentId(currentPage.pathname)}
                         key={currentPage.pathname}
                     />
+                    </div>
                 </div>
             </div>
         );
