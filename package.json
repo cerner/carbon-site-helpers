@@ -1,7 +1,7 @@
 {
   "name": "@cerner/carbon-site-helpers",
   "description": "A set of helpers for Carbon Graphs Site",
-  "version": "1.11.11",
+  "version": "1.11.12",
   "author": "Cerner Corporation",
   "browserslist": [
     ">0.2%",
